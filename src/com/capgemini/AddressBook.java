@@ -4,10 +4,7 @@ import java.util.Scanner;
 import java.util.*;
 
 public class AddressBook {
-	// UC3 - edit the contact details and update it.
-	private String field;
-	private static String c;
-	private static boolean choice;
+	// UC5- Add multiple contacts into address book
 	public static ContactInfo contact;
 	private static Scanner sc;
 	ArrayList<ContactInfo> Addbook;
@@ -18,26 +15,21 @@ public class AddressBook {
 
 	public void addContact() {
 		Addbook.add(contact);
+		System.out.println("Contact Added successfully!!");
 	}
 
-	public void removeContact(String name) {
-		for (ContactInfo c : Addbook) {
-			if (c.getFname().equals(name)) {
-				Addbook.remove(c);
-				System.out.println("Contact removed successfully!!");
-				break;
-			}
-		}
-		for (ContactInfo p : Addbook) {
-			p.show();
+	public void contactshow() {
+		for (ContactInfo f : Addbook) {
+			f.show();
 		}
 	}
 
 	public static void main(String[] args) {
 		sc = new Scanner(System.in);
+		System.out.println("Enter the number of contacts you want to enter into Address book:");
+		int n = Integer.parseInt(sc.nextLine());
 		AddressBook ab = new AddressBook();
-		choice = true;
-		while (choice) {
+		while (n > 0) {
 			System.out.println("Enter new contact details!");
 			System.out.print("Enter first name: ");
 			String fname = sc.nextLine();
@@ -51,24 +43,14 @@ public class AddressBook {
 			String city = sc.nextLine();
 			System.out.print("Enter ZIP: ");
 			int zip = Integer.parseInt(sc.nextLine());
-			System.out.print("Enter phone no: ");
+			System.out.print("Enter Phone no: ");
 			String phone = sc.nextLine();
 			System.out.print("Enter email: ");
 			String email = sc.nextLine();
 			contact = new ContactInfo(fname, lname, add, state, city, zip, phone, email);
 			ab.addContact();
-			System.out.println("Do you wish to add new contact (yes/no)? ");
-			c = sc.nextLine();
-			if (c.equals("yes")) {
-				choice = true;
-			} else {
-				choice = false;
-				// System.out.println("Thankyou!!");
-				break;
-			}
+			n--;
 		}
-		System.out.println("Enter the first name of the contact you want to remove : ");
-		String first = sc.nextLine();
-		ab.removeContact(first);
+		ab.contactshow();
 	}
 }
