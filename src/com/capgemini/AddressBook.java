@@ -20,55 +20,16 @@ public class AddressBook {
 		Addbook.add(contact);
 	}
 
-	public void editContact(String name) {
+	public void removeContact(String name) {
 		for (ContactInfo c : Addbook) {
 			if (c.getFname().equals(name)) {
-				System.out.println("Contact found!!");
-				System.out.println("Enter the field you want to edit: ");
-				field = sc.nextLine();
-				switch (field) {
-				case "fname":
-					System.out.println("Enter the new first name: ");
-					c.setFname(sc.nextLine());
-					break;
-				case "lname":
-					System.out.println("Enter the new last name: ");
-					c.setLname(sc.nextLine());
-					break;
-				case "address":
-					System.out.println("Enter the new address: ");
-					c.setAddress(sc.nextLine());
-					break;
-				case "state":
-					System.out.println("Enter the new state: ");
-					c.setState(sc.nextLine());
-					break;
-				case "city":
-					System.out.println("Enter the new city: ");
-					c.setCity(sc.nextLine());
-					break;
-				case "zip":
-					System.out.println("Enter the new ZIP: ");
-					c.setZip(Integer.parseInt(sc.nextLine()));
-					break;
-				case "phoneno":
-					System.out.println("Enter the new phone no.: ");
-					c.setPhoneno(sc.nextLine());
-					break;
-				case "email":
-					System.out.println("Enter the new email: ");
-					c.setEmail(sc.nextLine());
-					break;
-				default:
-					System.out.println("No such field exists!!! ");
-					break;
-				}
-				System.out.println("Contact edited successfully!!");
-				System.out.println("The updated contact is :");
-				c.show();
+				Addbook.remove(c);
+				System.out.println("Contact removed successfully!!");
 				break;
 			}
-
+		}
+		for (ContactInfo p : Addbook) {
+			p.show();
 		}
 	}
 
@@ -102,12 +63,12 @@ public class AddressBook {
 				choice = true;
 			} else {
 				choice = false;
-				//System.out.println("Thankyou!!");
+				// System.out.println("Thankyou!!");
 				break;
 			}
 		}
-		System.out.println("Enter the first name of the contact you want to edit : ");
+		System.out.println("Enter the first name of the contact you want to remove : ");
 		String first = sc.nextLine();
-		ab.editContact(first);
+		ab.removeContact(first);
 	}
 }
