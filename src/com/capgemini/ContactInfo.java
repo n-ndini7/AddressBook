@@ -64,7 +64,7 @@ public class ContactInfo {
 		this.city = city;
 	}
 
-	public int Zip() {
+	public int getZip() {
 		return zip;
 	}
 
